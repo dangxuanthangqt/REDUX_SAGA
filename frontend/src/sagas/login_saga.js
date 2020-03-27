@@ -1,0 +1,41 @@
+
+import { takeLatest, call, put } from 'redux-saga/effects';
+import { login } from '../apis/login';
+import * as action_type_login from '../constants/action_type_login';
+import { action_login_success } from '../actions/login';
+import * as Toastify from '../Helpers/Toastify';
+import getHistory from '../Helpers/History';
+import * as LocalStorageService from '../Helpers/LocalStorageService';
+import jwtDecode from 'jwt-decode';
+
+export function* login_saga(){
+    yield takeLatest(action_type_login.LOGIN, watchLogin )
+}
+function* watchLogin(action){
+    try{
+        const resp = yield call(login, action.payload.data)
+        //console.log(resp)
+        LocalStorageService.setToken(resp.data);
+        //console.log(jwtDecode(resp.data.accessToken))
+        const user = jwtDecode(resp.data.accessToken);
+        yield put(action_login_success(user));
+        yield call(action.payload.history.push, '/task-board')
+        //yield call(getHistory().push,"/task-board")
+       
+     
+    }catch(error){
+        if(error.data.message)
+        {
+            Toastify.toastifyError(error.data.message)
+        }else{
+           
+            Toastify.toastifyError(error.data)
+        }
+       
+    }
+        
+    
+    
+    
+
+}
