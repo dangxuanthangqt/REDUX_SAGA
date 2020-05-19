@@ -3,7 +3,7 @@ import * as action_type_register from '../constants/action_type_register';
 import { registerRequest } from '../apis/register';
 import * as action_ux from '../actions/ux';
 import * as Toastify from '../Helpers/Toastify';
-
+import history from '../Helpers/HistoryVersion2';
 import getHistory from '../Helpers/History';
 export function* register_saga() {
 
@@ -15,7 +15,9 @@ function* watchRegister(action) {
          yield call(registerRequest, action.payload)
         Toastify.toastifySuccess("Register successfully!");
         yield delay(500);
-        yield call(getHistory().push,'/login')
+        //yield call(getHistory().push,'/login')
+        yield call(history.push,'/login')
+
         // yield put(actionCreatorRegister.registerSuccess())
     }catch(e){
         // yield put(actionCreatorRegister.registerError())

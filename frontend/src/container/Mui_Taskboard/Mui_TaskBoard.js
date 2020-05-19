@@ -12,6 +12,7 @@ import { palette } from '@material-ui/system';
 import ModalForm from '../../components/Mui_ModalForm/ModalForm';
 import { showModal } from '../../actions/modal';
 import SearchBox from '../../components/SearchBox';
+import Helmet from 'react-helmet';
 // var listTasks = [
 //   {
 //     id: "1",
@@ -62,7 +63,7 @@ function Mui_TaskBoard(props) {
     var { fetchListTask } = actionCreators;
     fetchListTask();
 
-  },[]);
+  }, []);
   const showTaskBoard = () => {
     var { listTasks } = props;
     var xhtml;
@@ -146,6 +147,9 @@ function Mui_TaskBoard(props) {
   const { classes } = props;
   return (
     <Container >
+      <Helmet>
+        <title>Task board</title>
+      </Helmet>
       <Button
         onClick={() => handleOnClick("ADD TASK", null)}
         style={{ marginTop: 10 }}
@@ -174,8 +178,8 @@ function Mui_TaskBoard(props) {
 const mapStateToProps = (state) => {
   return {
     listTasks: state.tasks.list_tasks,
-    change : state.tasks.change
-   
+    change: state.tasks.change
+
   }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -1,4 +1,4 @@
-import { createStore , applyMiddleware, compose} from 'redux';
+import { createStore , applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../Reducer/re_root';
 import createSagaMiddleware from 'redux-saga'
@@ -13,7 +13,7 @@ const composeEnhancers =
     }) : compose;
 
     const sagaMiddleware = createSagaMiddleware()
-const config_redux =()=>{
+    const config_redux =()=>{
     const middleware=[thunk, sagaMiddleware];
     const enhancer = composeEnhancers(
       applyMiddleware(...middleware),

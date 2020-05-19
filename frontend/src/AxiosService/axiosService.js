@@ -1,7 +1,8 @@
 
 import axios from 'axios';
 import * as LocalStorageService from '../Helpers/LocalStorageService';
-import History from '../Helpers/History';
+//import History from '../Helpers/History';
+import History from '../Helpers/HistoryVersion2';
 import store from '../index';
 class axiosService {
     constructor() {
@@ -15,7 +16,7 @@ class axiosService {
                 console.log("11111111");
                 config.headers.Authorization = token ? token : '';
             }catch(e){
-                History().push('/login')
+                History.push('/login')
             }
             
             return config;
@@ -46,19 +47,19 @@ class axiosService {
             }
             catch(ERROR){
                 console.log("chuyen ve login neu refresh token invalid het han , satus code tra ve 401");
-                History().push("/login");
+                History.push("/login");
                 return Promise.reject(ERROR);
             }
         }
         if(status ===403){
             LocalStorageService.clearAllToken();
-             History().push('/login');
+             History.push('/login');
              return Promise.reject(error);
 
         }
         if(status ===500){
             LocalStorageService.clearAllToken();
-            History().push('/login');
+            History.push('/login');
             return Promise.reject(error.response)
         }
         //    await this.post('/refresh-token',{refreshToken : refreshToken}).then(

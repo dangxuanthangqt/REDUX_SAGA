@@ -4,11 +4,11 @@ import React, { Component } from 'react';
 
 import { ToastContainer } from 'react-toastify';
 import GlobalLoading from './components/GlobalLoading';
-
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+//import { ReactRouterGlobalHistory } from 'react-router-global-history';
+import { BrowserRouter, Switch, Route, Link , Router} from 'react-router-dom';
 import { ROUTES_ADMIN, ROUTES_LOGIN, ROUTES_REGISTER } from './Router/ConstRoutes';
 import AdminRoutes from './Router/AdminRoutes';
-import { GlobalHistory } from './Helpers/History';
+//import { GlobalHistory } from './Helpers/History';
 import axios from 'axios';
 import * as LocalStorageService from './Helpers/LocalStorageService';
 import { createBrowserHistory } from 'history';
@@ -16,8 +16,8 @@ import AdminHomePage from './container/AdminHomePage';
 import  Taskboard  from './container/Taskboard';
 import Dashboard from './components/Dashboard/Dashboard';
 import Mui_Dashboard from './components/Mui_Dashboard/Mui_Dashboard';
-const history = createBrowserHistory();
-
+//const history = createBrowserHistory();
+import history from './Helpers/HistoryVersion2';
 export class App extends Component {
 
   ShowAdminRoutes = () => {
@@ -73,8 +73,9 @@ export class App extends Component {
   render() {
     return (
       <div className="w-100 h-100">
-        <BrowserRouter history={history}>
-          <GlobalHistory></GlobalHistory>
+        <Router history={history}>
+        {/* <ReactRouterGlobalHistory /> */}
+       {/* <GlobalHistory></GlobalHistory> */}
           <GlobalLoading></GlobalLoading>
           <ToastContainer></ToastContainer>
           <Switch>
@@ -106,7 +107,7 @@ export class App extends Component {
           </Switch>
 
 
-        </BrowserRouter>
+        </Router>
 
 
       </div>
@@ -120,3 +121,4 @@ export class App extends Component {
 
 
 export default App;
+

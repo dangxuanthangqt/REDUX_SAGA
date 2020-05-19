@@ -1,6 +1,4 @@
 const jwt = require('jsonwebtoken');
-
-
 var generateToken = (user, secretSignature, tokenLife)=>{
     return new Promise((resolve, reject)=>{
         const user_data ={
