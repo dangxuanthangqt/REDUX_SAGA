@@ -99,9 +99,9 @@ function Mui_TaskBoard(props) {
 
                 </CardHeader>
                 <CardContent>
-                  <Typography variant="h6">
+                  {/* <Typography variant="h6">
                     ac
-                  </Typography>
+                  </Typography> */}
                   {
                     element.description
                   }

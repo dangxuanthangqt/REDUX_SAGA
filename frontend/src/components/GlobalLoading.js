@@ -13,7 +13,7 @@ export class GlobalLoading extends Component {
                         zIndex: 99
                     }} className="w-100 h-100 position-fixed d-flex justify-content-center align-items-center ">
                         <div>
-                            <img className="float-none" width={300} height={200} src={Loading} alt="Loading..." />
+                            <img className="float-none" width={50} height={40} src={Loading} alt="Loading..." />
                         </div>
         
                     </div>

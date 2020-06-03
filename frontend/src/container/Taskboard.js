@@ -66,7 +66,7 @@ import Helmet from 'react-helmet';
                                 <div className="card-body">
                                     <div className="d-flex justify-content-between">
                                         <h6 className="card-title">{e.title}</h6>
-                                        <h6 className="card-title">{status.lable}</h6>
+                                       {/* <h6 className="card-title">{status.lable}</h6> */}
 
                                     </div>
 

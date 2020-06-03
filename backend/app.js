@@ -12,8 +12,15 @@ var refreshTokenRouter= require('./routes/refreshToken');
 require('dotenv').config();
 var app = express();
 
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/mongooes', {useNewUrlParser: true,  useUnifiedTopology: true,useFindAndModify:false,useCreateIndex: true})
+// .then(() => console.log('DB Connected!'))
+// .catch(err => {
+// console.log(Error, err.message);
+// })
+
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mongooes', {useNewUrlParser: true,  useUnifiedTopology: true,useFindAndModify:false,useCreateIndex: true})
+mongoose.connect('mongodb+srv://thang:thang@cluster0-q8vge.mongodb.net/scrum?retryWrites=true&w=majority', {useNewUrlParser: true,  useUnifiedTopology: true,useFindAndModify:false,useCreateIndex: true})
 .then(() => console.log('DB Connected!'))
 .catch(err => {
 console.log(Error, err.message);

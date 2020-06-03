@@ -116,7 +116,7 @@ const useStyles = makeStyles(theme => ({
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            MAKE BY DXT
+            BLUE TEAM
           </Typography>
           <Mui_IconUser></Mui_IconUser>
         </Toolbar>
@@ -132,7 +132,7 @@ const useStyles = makeStyles(theme => ({
       >
         <div className={classes.drawerHeader}>
         <Typography variant="h6" noWrap>
-            MAKE BY DXT
+            BLUE TEAM
           </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}

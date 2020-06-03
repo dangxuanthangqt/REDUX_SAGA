@@ -137,6 +137,7 @@ function ModalForm(props) {
 
 
                         <Button 
+                        onClick={handleClose}
                          disabled ={props.isSubmitting}
                         variant="primary"  type="submit" >
                                 Submit

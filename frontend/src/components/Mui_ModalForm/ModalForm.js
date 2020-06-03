@@ -51,6 +51,7 @@ function ModalForm(props) {
         })
       }
     }
+    handleCloseModal();
    
   }
 
@@ -211,6 +212,7 @@ function ModalForm(props) {
 
 
                   <Button
+                 
                     disabled={props.isSubmitting}
                     variant="contained"
                     type="submit" >
