@@ -13,6 +13,7 @@ import ModalForm from '../../components/Mui_ModalForm/ModalForm';
 import { showModal } from '../../actions/modal';
 import SearchBox from '../../components/SearchBox';
 import Helmet from 'react-helmet';
+import { format, compareAsc } from 'date-fns'
 // var listTasks = [
 //   {
 //     id: "1",
@@ -73,8 +74,9 @@ function Mui_TaskBoard(props) {
       })
       return <Grid
         item
+        
         key={index}
-        md={4}
+        md={3}
 
       >
         <Typography variant="h5" className="text-center">
@@ -90,26 +92,34 @@ function Mui_TaskBoard(props) {
                 key={index}
                 style={{
                   margin: "10px 0",
+                  
 
                 }}>
                 <CardHeader
-
-                  title={element.title}
+                 
+                  title={element.taskName}
                 >
 
                 </CardHeader>
                 <CardContent>
+                  <Typography>
+                    startTime: { format(new Date(element.startTime), 'dd/MM/yyyy')}
+                  </Typography>
+                  <Typography >
+                    endTime: { format(new Date(element.endTime), 'dd/MM/yyyy')}
+                  </Typography>
                   {/* <Typography variant="h6">
-                    ac
+                    startTime: {element.startTime.Stringify}
+                  </Typography>
+                  <Typography variant="h6">
+                    endTime: 
                   </Typography> */}
-                  {
-                    element.description
-                  }
+                  
                 </CardContent>
                 <CardActions className={classes.cardAction}>
                   <Grid>
                     <IconButton
-                      onClick={() => handleDelete(element._id)}
+                      onClick={() => handleDelete(element.taskId)}
                       className={classes.btnDelete} >
                       <DeleteIcon fontSize="small" />
                     </IconButton >
@@ -136,7 +146,7 @@ function Mui_TaskBoard(props) {
     props.showModal(title, editing)
   }
   const handleDelete = (id) => {
-    if (window.confirm("Do you want to delete item task?")) {
+    if (window.confirm("Do you want to delete this task?")) {
       props.actionCreators.deleteTask(id);
     }
   }
@@ -148,7 +158,7 @@ function Mui_TaskBoard(props) {
   return (
     <Container >
       <Helmet>
-        <title>Task board</title>
+        <title>Blue Team</title>
       </Helmet>
       <Button
         onClick={() => handleOnClick("ADD TASK", null)}
@@ -161,6 +171,13 @@ function Mui_TaskBoard(props) {
       <SearchBox handleOnChange={handleOnChange}></SearchBox>
 
       <Grid container
+      // style={
+      //   {
+          
+      //     display: "grid",
+      //     gridTemplateColumns:"auto auto auto auto"
+      //   }
+      // }
         className="mt-5"
         spacing={3}>
         {

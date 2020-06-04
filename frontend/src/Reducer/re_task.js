@@ -3,7 +3,7 @@ import * as actionTypes from '../constants/actionTypes';
 import * as toastify from '../Helpers/Toastify';
 import { element } from 'prop-types';
 const initState ={
-    list_tasks : [],
+    list_tasks : [{}],
    change: false
     
 };

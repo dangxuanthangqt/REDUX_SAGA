@@ -21,9 +21,6 @@ export class SearchBox extends Component {
                 </TextField>
             </Grid>
 
-
-
-
         );
     }
 }

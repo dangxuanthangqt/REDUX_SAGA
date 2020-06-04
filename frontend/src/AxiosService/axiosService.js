@@ -8,13 +8,14 @@ class axiosService {
     constructor() {
         const instance = axios.create();
         //instance.defaults.headers.common['Authorization'] = "Default";
+        instance.defaults.baseURL="http://192.168.43.164:8000"
         instance.interceptors.response.use(this.handlesuccess, this.handleError)
         instance.interceptors.request.use((config)=>{
 
             try{
                 const token = LocalStorageService.getAccessToken();
                 console.log("11111111");
-                config.headers.Authorization = token ? token : '';
+                config.headers.Authorization = token ? `Bearer ${token}` : '';
             }catch(e){
                 History.push('/login')
             }
@@ -29,6 +30,8 @@ class axiosService {
         )
         this.instance = instance;
     }
+
+    
     handlesuccess =(res)=>{
             return res
     }

@@ -7,24 +7,27 @@ import * as action_ux from '../actions/ux';
 import * as action_modal from '../actions/modal'
 import { login_saga } from './login_saga';
 import { register_saga } from './register_saga';
+import { date } from 'yup';
+import { listTasks } from '../assets/fakeData/listTask';
+import { format, compareAsc } from 'date-fns'
 
 export function* tasks_saga(){
     yield takeEvery(actionTypes.FETCH_LIST_TASK,watcherFetchListTask);
-    yield takeLatest(actionTypes.FILTER_TASK, watcherFilterTask)
-    yield takeLatest(actionTypes.ADD_TASK, addTaskSaga)
-    yield takeLatest(actionTypes.DELETE_TASK, watcherDeleteTask)
-    yield takeLatest(actionTypes.EDIT_TASK, watcherEditTask)
+     yield takeLatest(actionTypes.FILTER_TASK, watcherFilterTask)
+     yield takeLatest(actionTypes.ADD_TASK, addTaskSaga)
+     yield takeLatest(actionTypes.DELETE_TASK, watcherDeleteTask)
+     yield takeLatest(actionTypes.EDIT_TASK, watcherEditTask)
 }
 function* watcherFetchListTask() {
 
     yield put(action_ux.showLoading());
     try {
-        const resp = yield call(getListTask);
-        console.log(resp)
-        yield put(action_task.fetchListTask_success(resp.data));
+       const resp = yield call(getListTask);
+      //  console.log(resp)
+        yield put(action_task.fetchListTask_success(resp.data.list));
     }
     catch (e) {
-       console.log(e);
+      // console.log(e);
         yield put(action_task.fetchListTask_error(e));
     }
     yield delay(1000);
@@ -34,12 +37,13 @@ function* watcherFetchListTask() {
 }
 function* watcherFilterTask({ payload }) {
     yield delay(500)
+    console.log(payload)
     const keyword = payload;
-    console.log(keyword.length)
+    //console.log(keyword.length)
     try {
         var resp = yield call(filterTask, keyword)
-        console.log(resp.data)
-        yield put(action_task.filterTaskSuccess(resp.data))
+        console.log(resp)
+        yield put(action_task.filterTaskSuccess(resp.data.list))
     } catch (E) {
 
     }
@@ -50,9 +54,11 @@ function* watcherFilterTask({ payload }) {
 function* addTaskSaga({ payload }) {
 
     yield put(action_ux.showLoading());
+    console.log(payload)
     try {
         const resp = yield call(addTask, payload)
         console.log(resp)
+        yield put(action_task.fetchListTask());
         yield put(action_task.addTaskSuccess(resp.data))
 
     }
@@ -71,7 +77,8 @@ function* watcherDeleteTask({ payload }) {
     try {
         const resp = yield call(deleteTask, payload)
         //console.log(resp);
-        yield put(action_task.deleteTaskSuccess(resp.data))
+        yield put(action_task.fetchListTask())
+       // yield put(action_task.deleteTaskSuccess(resp.data))
     } catch (e) {
         console.log(e);
         yield put(action_task.deleteTaskFail())
@@ -81,11 +88,20 @@ function* watcherDeleteTask({ payload }) {
 }
 function* watcherEditTask({ payload }) {
     yield put(action_ux.showLoading())
+    let data ={
+        taskName: payload.taskName,
+        startTime: payload.startTime,
+        endTime: payload.endTime,
+        status: payload.status
+    }
+    console.log(data);
     try {
         
-        yield call(editTask, payload);
+        const resp = yield call(editTask, data, payload.taskId);
         //const resp = yield call(getListTask);
-        yield put(action_task.editTaskSuccess(payload))
+        console.log(resp)
+        yield put(action_task.fetchListTask());
+        //yield put(action_task.editTaskSuccess(payload))
         yield put(action_modal.hideModal())
 
     } catch (e) {

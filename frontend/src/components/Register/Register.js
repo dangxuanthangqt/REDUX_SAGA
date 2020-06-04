@@ -26,7 +26,8 @@ class Register extends Component {
                         }
                     }
                     validationSchema={Yup.object().shape({
-                        
+                        email: Yup.string()
+                        .required("email is required !"),
                         password: Yup.string()
 
                             .min(6, "Password minimun is 6 characters !")
@@ -59,7 +60,7 @@ class Register extends Component {
 
                                     <span className="fa fa-user fa-2x" aria-hidden="true" />
                                         <Field
-                                            validate={validateEmail}
+                                           
                                            
                                             type="text"
                                             className="form-control"
@@ -137,28 +138,28 @@ class Register extends Component {
         );
     }
 }
-async function validateEmail(value) {
-    console.log(value)
-    let error;
-    if (!value) {
-      error = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-      error = 'Invalid email address';
-    }else {
-        try{
-             await registerRequestCheck(value);
-            //console.log("tai khaan ton tai")
+// async function validateEmail(value) {
+//     console.log(value)
+//     let error;
+//     if (!value) {
+//       error = 'Required';
+//     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+//       error = 'Invalid email address';
+//     }else {
+//         try{
+//              await registerRequestCheck(value);
+//             //console.log("tai khaan ton tai")
             
-        }catch(e){
-            error = "Email does exist !"
-          //  console.log(e);
-        }
+//         }catch(e){
+//             error = "Email does exist !"
+//           //  console.log(e);
+//         }
      
 
-    }
+//     }
 
-    return error;
-  }
+//     return error;
+//   }
 const mapDispatchToProps =(dispatch)=>{
     return {
         actionRegister : bindActionCreators(actionRegister, dispatch)

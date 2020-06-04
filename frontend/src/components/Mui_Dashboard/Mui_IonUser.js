@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 }))
 function Mui_IconUser() {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [User, setUser] = React.useState({});
+    const [User, setUser] = React.useState({email:"hieu@gma"});
     const classes = useStyles();
 
     const handleClick = event => {
@@ -25,9 +25,9 @@ function Mui_IconUser() {
     };
     useEffect(() => {
 
-        if (localStorage.getItem("refreshToken")) {
-            var Decode = jwtDecode(localStorage.getItem("refreshToken"));
-
+        if (localStorage.getItem("accessToken")) {
+            var Decode = jwtDecode(localStorage.getItem("accessToken"));
+            console.log(Decode)
             setUser(Decode.data)
         }
 
@@ -39,7 +39,7 @@ function Mui_IconUser() {
             alignItems: "center"
         }}>
             <Typography variant="h6">
-                {`Hi, ${User.email}`}
+                {/* {`Hi, ${User.email}`} */}
             </Typography>
             <IconButton
                 aria-label="account of current user"

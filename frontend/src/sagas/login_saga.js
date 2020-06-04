@@ -16,8 +16,8 @@ export function* login_saga(){
 function* watchLogin(action){
     try{
         const resp = yield call(login, action.payload.data)
-        //console.log(resp)
-        LocalStorageService.setToken(resp.data);
+       // console.log(resp)
+        LocalStorageService.setAccessToken(resp.data.accessToken);
         //console.log(jwtDecode(resp.data.accessToken))
         const user = jwtDecode(resp.data.accessToken);
         yield put(action_login_success(user));

@@ -8,12 +8,12 @@ export const filterTask =(keyword)=>{
 }
 
 export const addTask = (data)=>{
-    return axiosService.post('/tasks', data)
+    return axiosService.post('/task', data)
 }
 
 export const deleteTask=(data)=>{
-return axiosService.delete(`/tasks/${data}`)
+return axiosService.delete(`/task/${data}`)
 }
-export const editTask =(data)=>{
-    return  axiosService.put('/tasks/', data)
+export const editTask =(data, taskId)=>{
+    return  axiosService.put(`/task/${taskId}`, data)
 }

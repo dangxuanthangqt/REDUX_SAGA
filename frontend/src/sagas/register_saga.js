@@ -11,8 +11,13 @@ export function* register_saga() {
 }
 function* watchRegister(action) {
     yield put(action_ux.showLoading())
+    console.log(action.payload)
     try {
-         yield call(registerRequest, action.payload)
+         yield call(registerRequest, {
+             username: action.payload.email,
+             password : action.payload.password,
+             fullname:"Minh thu"
+         })
         Toastify.toastifySuccess("Register successfully!");
         yield delay(500);
         //yield call(getHistory().push,'/login')

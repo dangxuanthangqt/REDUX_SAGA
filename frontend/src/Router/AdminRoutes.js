@@ -10,17 +10,17 @@ export class AdminRoutes extends Component {
                 path={path}
                 exact={exact}
                 render={() => {
-                    if (localStorage.getItem("accessToken") && localStorage.getItem("refreshToken")) {
-                        return <Mycomponent></Mycomponent>
-                    } else {
-                        return (<Redirect to={{
-                            pathname: "/login",
+                    // if (localStorage.getItem("accessToken") && localStorage.getItem("refreshToken")) {
+                    //     return <Mycomponent></Mycomponent>
+                    // } else {
+                    //     return (<Redirect to={{
+                    //         pathname: "/login",
 
-                        }}>
+                    //     }}>
 
-                        </Redirect>)
-                    }
-
+                    //     </Redirect>)
+                    // }
+                    return <Mycomponent></Mycomponent>
                 }}
             >
             </Route>

@@ -1,17 +1,21 @@
 
 const STATUS =[
     {
-        value: 0,
-        lable:"READY"
+        value: "OPEN",
+        lable:"OPEN"
     }, 
     {
-        value: 1,
-        lable:"IN PROGRESS"
+        value: "BLOCK",
+        lable:"BLOCK"
     }, 
     {
-        value: 2,
-        lable:"COMPLETED"
+        value: "IN_PROGRESS",
+        lable:"IN_PROGRESS"
     }, 
+    {
+        value: "CLOSE",
+        lable: "CLOSE"
+    }
 
 ];
 
